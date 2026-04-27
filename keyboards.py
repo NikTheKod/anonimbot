@@ -1,21 +1,16 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
-# Главная клавиатура (Reply-кнопки)
 main_keyboard = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="📝 Задать анонимный вопрос")]],
     resize_keyboard=True
 )
 
-# Клавиатура для отмены
 cancel_keyboard = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="❌ Отменить")]],
     resize_keyboard=True
 )
 
-# Клавиатура для админа (на каждый вопрос)
-def admin_buttons(user_id: int, question_text: str):
-    # Ограничиваем длину callback_data (макс 64 байта)
-    # Поэтому храним только user_id, а текст вопроса будем доставать из сообщения
+def admin_buttons(user_id: int):
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
